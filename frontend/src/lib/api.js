@@ -2,7 +2,9 @@
 //   { success: bool, ...data } on success
 //   { error: { code, message, fields? } } on failure
 
-const BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+// In production, use the deployed backend URL from Vercel env var
+// In dev, VITE_API_BASE_URL is unset, so fall back to the local Express server
+const BASE = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5000';
 
 export class ApiError extends Error {
   constructor(message, { code, status, fields } = {}) {

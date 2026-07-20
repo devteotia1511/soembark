@@ -1,0 +1,268 @@
+/* Tailwind CSS directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   SoEmbark — Global base
+   Clean, Airbnb-style: white, generous, teal-accented
+   ========================================================= */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background: #FFFFFF;
+  }
+
+  body {
+    background: #FFFFFF;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: rgba(28, 171, 176, 0.18);
+    color: #158A8E;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    color: #333333;
+  }
+
+  /* Subtle scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #FFFFFF; }
+  ::-webkit-scrollbar-thumb {
+    background: #E6F7F7;
+    border-radius: 9999px;
+    border: 2px solid #FFFFFF;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: #1CABB0; }
+}
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-medium;
+    transition: transform 0.2s cubic-bezier(.2,.8,.2,1),
+                box-shadow 0.25s ease,
+                background 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease;
+    will-change: transform;
+  }
+  .btn:focus-visible {
+    outline: 2px solid #1CABB0;
+    outline-offset: 3px;
+  }
+
+  .btn-primary {
+    @apply btn px-7 py-3.5 rounded-full text-[0.95rem];
+    color: #FFFFFF;
+    background: #1CABB0;
+    box-shadow: 0 6px 18px -6px rgba(28, 171, 176, 0.45);
+  }
+  .btn-primary:hover {
+    background: #158A8E;
+    transform: scale(1.02);
+    box-shadow: 0 10px 24px -6px rgba(21, 138, 142, 0.55);
+  }
+  .btn-primary:active { transform: scale(0.99); }
+
+  .btn-ghost {
+    @apply btn px-7 py-3.5 rounded-full text-[0.95rem];
+    color: #333333;
+    background: transparent;
+    border: 1.5px solid #E6F7F7;
+  }
+  .btn-ghost:hover {
+    color: #1CABB0;
+    border-color: #1CABB0;
+    background: #E6F7F7;
+    transform: scale(1.02);
+  }
+  .btn-ghost:active { transform: scale(0.99); }
+
+  .btn-on-teal {
+    @apply btn px-7 py-3.5 rounded-full text-[0.95rem];
+    color: #1CABB0;
+    background: #FFFFFF;
+    box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.15);
+  }
+  .btn-on-teal:hover {
+    background: #F2FBFB;
+    transform: scale(1.02);
+    box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.20);
+  }
+
+  .btn-small {
+    @apply btn px-5 py-2.5 rounded-full text-[0.875rem];
+    color: #FFFFFF;
+    background: #1CABB0;
+  }
+  .btn-small:hover {
+    background: #158A8E;
+    transform: scale(1.02);
+  }
+}
+
+/* =========================================================
+   Cards
+   ========================================================= */
+@layer components {
+  .card-soft {
+    background: #FFFFFF;
+    border: 1px solid #F5F5F5;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1),
+                box-shadow 0.35s ease,
+                border-color 0.35s ease;
+  }
+  .card-soft:hover {
+    transform: translateY(-2px);
+    border-color: rgba(28, 171, 176, 0.25);
+    box-shadow: 0 12px 28px -8px rgba(15, 23, 42, 0.10), 0 2px 6px rgba(15, 23, 42, 0.05);
+  }
+}
+
+/* =========================================================
+   Nav link — teal underline animation
+   ========================================================= */
+@layer components {
+  .nav-link {
+    position: relative;
+    color: #333333;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    padding: 0.25rem 0;
+    transition: color 0.2s ease;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    background: #1CABB0;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(.2,.8,.2,1);
+  }
+  .nav-link:hover {
+    color: #1CABB0;
+  }
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+/* =========================================================
+   Container
+   ========================================================= */
+@layer components {
+  .container-x {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 1200px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .container-wide {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 1280px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* =========================================================
+   Section eyebrow + accent utilities
+   ========================================================= */
+@layer components {
+  .eyebrow {
+    font-size: 0.75rem;
+    line-height: 1.2;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #1CABB0;
+  }
+
+  .teal-tint-bg {
+    background: #E6F7F7;
+  }
+
+  .teal-mist-bg {
+    background: #F2FBFB;
+  }
+
+  /* soft teal blob behind hero */
+  .teal-blob {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(28, 171, 176, 0.18), rgba(28, 171, 176, 0.04) 60%, transparent 80%);
+    pointer-events: none;
+    filter: blur(40px);
+  }
+}
+
+/* =========================================================
+   Reveal on scroll
+   ========================================================= */
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(.2,.8,.2,1), transform 0.7s cubic-bezier(.2,.8,.2,1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+}
+
+/* =========================================================
+   Reduced motion
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

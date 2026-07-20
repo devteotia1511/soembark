@@ -17,11 +17,37 @@ app.set('trust proxy', 1);
 app.use(helmet());
 
 // CORS allowlist (defaults to local Vite dev server)
-app.use(cors({
-  origin: env.CLIENT_ORIGIN,
+// Support wildcard pattern like https://*.vercel.app
+const corsOptions = {
   credentials: false,
   methods: ['GET', 'POST', 'PATCH', 'OPTIONS'],
-}));
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+    
+    // Check if origin matches the allowed pattern
+    if (env.CLIENT_ORIGIN === '*') {
+      return callback(null, true);
+    }
+    
+    // Handle wildcard patterns like https://*.vercel.app
+    if (env.CLIENT_ORIGIN.includes('*')) {
+      const pattern = env.CLIENT_ORIGIN.replace('*', '[^.]+');
+      const regex = new RegExp(`^${pattern}$`);
+      if (regex.test(origin)) {
+        return callback(null, true);
+      }
+    }
+    
+    // Exact match
+    if (origin === env.CLIENT_ORIGIN) {
+      return callback(null, true);
+    }
+    
+    callback(new Error('Not allowed by CORS'));
+  }
+};
+app.use(cors(corsOptions));
 
 // JSON body parsing with a tight cap to keep payloads small.
 app.use(express.json({ limit: '10kb' }));

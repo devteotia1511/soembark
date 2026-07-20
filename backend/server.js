@@ -62,8 +62,13 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 });
 
 async function main() {
-  await mongoose.connect(env.MONGODB_URI);
-  console.log('✓ MongoDB connected');
+  try {
+    await mongoose.connect(env.MONGODB_URI);
+    console.log('✓ MongoDB connected');
+  } catch (err) {
+    console.error('✗ MongoDB connection failed:', err.message);
+    throw err;
+  }
 
   app.listen(env.PORT, () => {
     const channel = env.RESEND_API_KEY ? 'resend' : 'console (no RESEND_API_KEY)';
@@ -75,6 +80,10 @@ async function main() {
 }
 
 main().catch((err) => {
-  console.error('Failed to start server:', err);
+  console.error('Failed to start server:');
+  console.error(err.message);
+  if (err.message.includes('Missing required env var')) {
+    console.error('Please ensure all required environment variables are set in Render.');
+  }
   process.exit(1);
 });

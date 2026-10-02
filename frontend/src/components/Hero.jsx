@@ -136,7 +136,7 @@ function InnovationNetwork() {
     { icon: Share2, label: 'Social', angle: 330, color: '#009999', delay: 1 },
   ];
 
-  const radius = 150; // Safe radius to prevent any overlap with corner badges
+  const radius = 150;
 
   return (
     <div className="relative w-full aspect-square max-w-[600px] mx-auto flex items-center justify-center">
@@ -156,16 +156,20 @@ function InnovationNetwork() {
       </motion.div>
 
       {/* Connection Lines & Nodes */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
+        viewBox="0 0 600 600"
+        preserveAspectRatio="xMidYMid meet"
+      >
         {nodes.map((node, i) => {
           const rad = (node.angle * Math.PI) / 180;
-          const x2 = Math.cos(rad) * radius;
-          const y2 = Math.sin(rad) * radius;
+          const x2 = 300 + Math.cos(rad) * radius;
+          const y2 = 300 + Math.sin(rad) * radius;
           return (
             <motion.line
               key={`line-${i}`}
-              x1="50%" y1="50%"
-              x2={`calc(50% + ${x2}px)`} y2={`calc(50% + ${y2}px)`}
+              x1="300" y1="300"
+              x2={x2} y2={y2}
               stroke={node.color}
               strokeWidth="1"
               strokeDasharray="4 4"

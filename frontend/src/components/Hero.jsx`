@@ -128,120 +128,105 @@ export default function Hero() {
 
 function InnovationNetwork() {
   const nodes = [
-    { icon: Target, label: 'ADs', angle: 30, color: '#009999', delay: 0 },
-    { icon: Megaphone, label: 'Brand', angle: 90, color: '#00B3B3', delay: 0.2 },
-    { icon: Users, label: 'Influencers', angle: 150, color: '#00CCCC', delay: 0.4 },
-    { icon: Palette, label: 'Design', angle: 210, color: '#007777', delay: 0.6 },
-    { icon: Video, label: 'Video', angle: 270, color: '#00B3B3', delay: 0.8 },
-    { icon: Share2, label: 'Social', angle: 330, color: '#009999', delay: 1 },
+    { icon: Target, label: 'ADs', x: -120, y: -100, color: '#009999', delay: 0 },
+    { icon: Megaphone, label: 'Brand', x: 120, y: -80, color: '#00B3B3', delay: 0.2 },
+    { icon: Users, label: 'Influencers', x: 150, y: 60, color: '#00CCCC', delay: 0.4 },
+    { icon: Palette, label: 'Design', x: -140, y: 80, color: '#007777', delay: 0.6 },
+    { icon: Video, label: 'Video', x: 0, y: 140, color: '#00B3B3', delay: 0.8 },
+    { icon: Share2, label: 'Social', x: -80, y: -150, color: '#009999', delay: 1 },
   ];
 
-  const radius = 150; // Safe radius to prevent any overlap with corner badges
-
   return (
-    <div className="relative w-full aspect-square max-w-[600px] mx-auto flex items-center justify-center">
+    <div className="relative w-full aspect-square max-w-[500px] mx-auto flex items-center justify-center">
       {/* Central Core */}
       <motion.div
         animate={{
           boxShadow: ["0 0 20px rgba(0,153,153,0.2)", "0 0 60px rgba(0,153,153,0.5)", "0 0 20px rgba(0,153,153,0.2)"]
         }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        className="relative z-30 h-24 w-24 rounded-full bg-black border-2 border-[#009999] flex items-center justify-center shadow-2xl"
+        className="relative z-10 h-24 w-24 rounded-full bg-black border-2 border-[#009999] flex items-center justify-center shadow-2xl"
       >
-        <img
-          src="/soembark-road-logo.png"
-          alt="SoEmbark"
-          className="h-16 w-16 object-contain p-2"
-        />
+        <div className="flex flex-col items-center justify-center">
+          <span style={{ fontFamily: '"Brodille", "Playfair Display", serif', fontWeight: 800, fontSize: '1.2rem', color: '#FFFFFF' }}>So</span>
+          <span style={{ fontFamily: '"Bricolage Grotesque", sans-serif', fontWeight: 700, fontSize: '0.8rem', color: '#009999', lineHeight: '1' }}>Embark</span>
+        </div>
       </motion.div>
 
       {/* Connection Lines & Nodes */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
-        {nodes.map((node, i) => {
-          const rad = (node.angle * Math.PI) / 180;
-          const x2 = Math.cos(rad) * radius;
-          const y2 = Math.sin(rad) * radius;
-          return (
-            <motion.line
-              key={`line-${i}`}
-              x1="50%" y1="50%"
-              x2={`calc(50% + ${x2}px)`} y2={`calc(50% + ${y2}px)`}
-              stroke={node.color}
-              strokeWidth="1"
-              strokeDasharray="4 4"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 0.3 }}
-              transition={{ duration: 1.5, delay: node.delay, ease: "easeOut" }}
-            />
-          );
-        })}
+        {nodes.map((node, i) => (
+          <motion.line
+            key={`line-${i}`}
+            x1="50%" y1="50%"
+            x2={`calc(50% + ${node.x}px)`} y2={`calc(50% + ${node.y}px)`}
+            stroke={node.color}
+            strokeWidth="1"
+            strokeDasharray="4 4"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 0.3 }}
+            transition={{ duration: 1.5, delay: node.delay, ease: "easeOut" }}
+          />
+        ))}
       </svg>
 
-      {nodes.map((node, i) => {
-        const rad = (node.angle * Math.PI) / 180;
-        const x = Math.cos(rad) * radius;
-        const y = Math.sin(rad) * radius;
-        return (
+      {nodes.map((node, i) => (
+        <motion.div
+          key={`node-${i}`}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: node.delay + 0.5, ease: "backOut" }}
+          style={{
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            marginLeft: node.x / 2,
+            marginTop: node.y / 2
+          }}
+          className="group"
+        >
           <motion.div
-            key={`node-${i}`}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: node.delay + 0.5, ease: "backOut" }}
-            style={{
-              position: 'absolute',
-              left: '50%',
-              top: '50%',
-              translateX: `${x}px`,
-              translateY: `${y}px`,
-              marginLeft: '-28px',
-              marginTop: '-28px',
+            animate={{
+              y: [0, -10, 0],
+              x: [0, 5, 0]
             }}
-            className="group z-20"
+            transition={{
+              duration: 4 + Math.random() * 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.2
+            }}
+            className="relative"
           >
+            {/* Node Glow */}
+            <div
+              className="absolute inset-0 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{ backgroundColor: node.color }}
+            />
+
+            {/* Node Body */}
+            <div className="relative h-14 w-14 rounded-full bg-[#0a0a0a] border border-[#333333] flex items-center justify-center text-white transition-all duration-300 group-hover:border-[#009999] group-hover:scale-110 z-10 shadow-xl">
+              <node.icon size={20} style={{ color: node.color }} className="group-hover:text-white transition-colors" />
+            </div>
+
+            {/* Label */}
             <motion.div
-              animate={{
-                y: [0, -10, 0],
-                x: [0, 5, 0]
-              }}
-              transition={{
-                duration: 4 + Math.random() * 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.2
-              }}
-              className="relative"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: node.delay + 1 }}
+              className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 rounded bg-black/80 border border-[#333333] text-[10px] font-bold text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             >
-              {/* Node Glow */}
-              <div
-                className="absolute inset-0 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ backgroundColor: node.color }}
-              />
-
-              {/* Node Body */}
-              <div className="relative h-14 w-14 rounded-full bg-[#0a0a0a] border border-[#333333] flex items-center justify-center text-white transition-all duration-300 group-hover:border-[#009999] group-hover:scale-110 z-10 shadow-xl">
-                <node.icon size={20} style={{ color: node.color }} className="group-hover:text-white transition-colors" />
-              </div>
-
-              {/* Label */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: node.delay + 1 }}
-                className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 rounded bg-black/80 border border-[#333333] text-[10px] font-bold text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              >
-                {node.label}
-              </motion.div>
+              {node.label}
             </motion.div>
           </motion.div>
-        );
-      })}
+        </motion.div>
+      ))}
 
-      {/* Floating Metric Badges - Pushed to the absolute corners of the container */}
+      {/* Floating Metric Badges */}
       {[
-        { text: '142% ROI', x: '2%', y: '2%', delay: 1.5 },
-        { text: '120+ Teams', x: '85%', y: '2%', delay: 1.8 },
-        { text: 'Senior Led', x: '85%', y: '92%', delay: 2.1 },
-        { text: 'Innovation First', x: '2%', y: '92%', delay: 2.4 },
+        { text: '142% ROI', x: '20%', y: '30%', delay: 1.5 },
+        { text: '120+ Teams', x: '70%', y: '20%', delay: 1.8 },
+        { text: 'Senior Led', x: '75%', y: '70%', delay: 2.1 },
+        { text: 'Innovation First', x: '25%', y: '75%', delay: 2.4 },
       ].map((badge, i) => (
         <motion.div
           key={`badge-${i}`}
@@ -249,7 +234,7 @@ function InnovationNetwork() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: badge.delay }}
           style={{ left: badge.x, top: badge.y }}
-          className="absolute px-3 py-1 rounded-full bg-[#009999]/10 border border-[#009999]/30 text-[#009999] text-[10px] font-bold uppercase tracking-widest backdrop-blur-sm z-10"
+          className="absolute px-3 py-1 rounded-full bg-[#009999]/10 border border-[#009999]/30 text-[#009999] text-[10px] font-bold uppercase tracking-widest backdrop-blur-sm"
         >
           {badge.text}
         </motion.div>

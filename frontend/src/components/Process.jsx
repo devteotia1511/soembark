@@ -22,7 +22,7 @@ const ease = [0.2, 0.8, 0.2, 1];
 
 export default function Process() {
   return (
-    <section id="process" className="bg-brand-tealTint py-24 md:py-32">
+    <section id="process" className="bg-[#0a0a0a] py-24 md:py-32 relative overflow-hidden">
       <div className="container-wide">
         <div className="max-w-2xl mb-16">
           <motion.p
@@ -39,20 +39,25 @@ export default function Process() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6, delay: 0.05, ease }}
-            className="text-h1 text-brand-ink text-balance"
+            className="text-h1 text-white text-balance"
           >
             A simple,{' '}
-            <span className="text-brand-teal">honest</span> way to get from idea to launch.
+            <span className="text-[#009999]">honest</span> way to get from idea to launch.
           </motion.h2>
         </div>
 
         {/* Steps */}
         <div className="relative grid md:grid-cols-3 gap-10 md:gap-6">
           {/* Connecting line — desktop only */}
-          <div
-            aria-hidden="true"
-            className="hidden md:block absolute top-7 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-brand-teal to-transparent"
-          />
+          <div className="hidden md:block absolute top-7 left-[16%] right-[16%] h-px bg-[#1a1a1a]">
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: '100%' }}
+              viewport={{ once: true }}
+              transition={{ duration: 2, ease: "easeInOut", delay: 0.5 }}
+              className="h-full bg-gradient-to-r from-transparent via-[#009999] to-transparent"
+            />
+          </div>
 
           {steps.map((s, i) => (
             <motion.div
@@ -61,18 +66,18 @@ export default function Process() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.55, delay: i * 0.1, ease }}
-              className="relative"
+              className="relative group"
             >
               <div className="flex items-center gap-4">
-                <div className="relative h-14 w-14 rounded-full bg-white border border-brand-teal/30 shadow-soft flex items-center justify-center">
-                  <span className="font-display font-bold text-[1.0625rem] text-brand-teal">
+                <div className="relative h-14 w-14 rounded-full bg-black border border-[#333333] shadow-soft flex items-center justify-center group-hover:border-[#009999] transition-colors duration-300">
+                  <span className="font-display font-bold text-[1.0625rem] text-[#009999]">
                     {s.n}
                   </span>
-                  <span className="absolute -inset-1 rounded-full ring-1 ring-brand-teal/15" />
+                  <span className="absolute -inset-1 rounded-full ring-1 ring-[#009999]/15" />
                 </div>
               </div>
-              <h3 className="mt-6 text-h3 text-brand-ink">{s.title}</h3>
-              <p className="mt-3 text-[0.9375rem] leading-relaxed text-brand-muted text-pretty max-w-sm">
+              <h3 className="mt-6 text-h3 text-white group-hover:text-[#009999] transition-colors duration-300">{s.title}</h3>
+              <p className="mt-3 text-[0.9375rem] leading-relaxed text-[#a7a9ac] text-pretty max-w-sm">
                 {s.body}
               </p>
             </motion.div>

@@ -30,10 +30,10 @@ const ease = [0.2, 0.8, 0.2, 1];
 
 export default function SocialProof() {
   return (
-    <section id="proof" className="bg-brand-white py-24 md:py-32">
+    <section id="proof" className="bg-black py-24 md:py-32">
       <div className="container-wide">
         {/* Stats bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6 pb-20 border-b border-brand-lineSoft">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6 pb-20 border-b border-[#1a1a1a]">
           {stats.map((s, i) => (
             <motion.div
               key={s.l}
@@ -43,10 +43,10 @@ export default function SocialProof() {
               transition={{ duration: 0.5, delay: i * 0.06, ease }}
               className="text-center md:text-left"
             >
-              <div className="font-display font-bold text-[clamp(2.5rem,4.5vw,3.5rem)] leading-none text-brand-teal">
+              <div className="font-display font-bold text-[clamp(2.5rem,4.5vw,3.5rem)] leading-none text-[#009999]">
                 {s.v}
               </div>
-              <div className="mt-3 text-[0.9375rem] text-brand-muted">{s.l}</div>
+              <div className="mt-3 text-[0.9375rem] text-[#a7a9ac]">{s.l}</div>
             </motion.div>
           ))}
         </div>
@@ -67,17 +67,17 @@ export default function SocialProof() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6, delay: 0.05, ease }}
-            className="text-h1 text-brand-ink text-balance"
+            className="text-h1 text-white text-balance"
           >
             Honest, senior, and{' '}
-            <span className="text-brand-teal">built to ship</span>.
+            <span className="text-[#009999]">built to ship</span>.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6, delay: 0.15, ease }}
-            className="mt-5 text-lead text-brand-muted text-pretty"
+            className="mt-5 text-lead text-[#a7a9ac] text-pretty"
           >
             Three commitments we make to every partner — and the standard we hold ourselves to.
           </motion.p>
@@ -93,11 +93,11 @@ export default function SocialProof() {
               transition={{ duration: 0.55, delay: i * 0.07, ease }}
               className="card-soft p-7 md:p-8 group"
             >
-              <div className="h-12 w-12 rounded-card bg-brand-tealTint flex items-center justify-center text-brand-teal group-hover:bg-brand-teal group-hover:text-white transition-colors duration-300">
+              <div className="h-12 w-12 rounded-card bg-[#1a1a1a] flex items-center justify-center text-[#009999] group-hover:bg-[#009999] group-hover:text-white transition-colors duration-300">
                 <e.icon size={22} strokeWidth={1.8} />
               </div>
-              <h3 className="mt-6 text-h3 text-brand-ink">{e.title}</h3>
-              <p className="mt-3 text-[0.9375rem] leading-relaxed text-brand-muted text-pretty">
+              <h3 className="mt-6 text-h3 text-white">{e.title}</h3>
+              <p className="mt-3 text-[0.9375rem] leading-relaxed text-[#a7a9ac] text-pretty">
                 {e.body}
               </p>
             </motion.div>

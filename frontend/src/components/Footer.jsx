@@ -52,20 +52,19 @@ export default function Footer() {
   return (
     <footer
       id="about"
-      className="bg-brand-white border-t border-brand-tealTint"
+      className="bg-black border-t border-[#1a1a1a]"
     >
       <div className="container-wide py-16 md:py-20">
         <div className="grid lg:grid-cols-12 gap-12">
           {/* Brand */}
           <div className="lg:col-span-4">
-            <a href="#top" className="flex items-center" aria-label="SoEmbark home">
-              <img
-                src="/soembark-lockup.png"
-                alt="SoEmbark"
-                className="h-16 w-auto object-contain"
-              />
+            <a href="#top" className="flex items-baseline" aria-label="SoEmbark home">
+              <div className="flex items-baseline gap-0">
+                <span style={{ fontFamily: '"Brodille", "Playfair Display", serif', fontWeight: 800, fontSize: '1.75rem', color: '#FFFFFF', lineHeight: '1' }}>So</span>
+                <span style={{ fontFamily: '"Bricolage Grotesque", sans-serif', fontWeight: 700, fontSize: '1.75rem', color: '#009999', lineHeight: '1' }}>Embark</span>
+              </div>
             </a>
-            <p className="mt-5 text-[0.9375rem] text-brand-muted leading-relaxed max-w-sm text-pretty">
+            <p className="mt-5 text-[0.9375rem] text-[#a7a9ac] leading-relaxed max-w-sm text-pretty">
               A creative innovation studio helping ambitious teams design, build, and launch
               the things that move them forward.
             </p>
@@ -78,7 +77,7 @@ export default function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="h-9 w-9 rounded-full border border-brand-line text-brand-ink hover:text-brand-teal hover:border-brand-teal flex items-center justify-center transition"
+                  className="h-9 w-9 rounded-full border border-[#1a1a1a] text-white hover:text-[#009999] hover:border-[#009999] flex items-center justify-center transition"
                 >
                   <Icon size={16} />
                 </a>
@@ -90,7 +89,7 @@ export default function Footer() {
           <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-8">
             {columns.map((col) => (
               <div key={col.title}>
-                <div className="text-eyebrow uppercase text-brand-ink mb-4">
+                <div className="text-eyebrow uppercase text-white mb-4">
                   {col.title}
                 </div>
                 <ul className="space-y-3">
@@ -98,7 +97,7 @@ export default function Footer() {
                     <li key={l.label}>
                       <a
                         href={l.href}
-                        className="text-[0.9375rem] text-brand-muted hover:text-brand-teal transition"
+                        className="text-[0.9375rem] text-[#a7a9ac] hover:text-[#009999] transition"
                       >
                         {l.label}
                       </a>
@@ -111,16 +110,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 pt-6 border-t border-brand-lineSoft flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[0.8125rem] text-brand-muted">
+        <div className="mt-14 pt-6 border-t border-[#1a1a1a] flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-[0.8125rem] text-[#a7a9ac]">
             © {new Date().getFullYear()} SoEmbark. All rights reserved.
           </p>
           <a
             href="#top"
-            className="inline-flex items-center gap-2 text-[0.8125rem] font-medium text-brand-ink hover:text-brand-teal transition"
+            className="inline-flex items-center gap-2 text-[0.8125rem] font-medium text-white hover:text-[#009999] transition"
           >
             Back to top
-            <span className="h-7 w-7 rounded-full border border-brand-line flex items-center justify-center">
+            <span className="h-7 w-7 rounded-full border border-[#1a1a1a] flex items-center justify-center">
               <ArrowUp size={14} />
             </span>
           </a>
@@ -165,7 +164,7 @@ function NewsletterForm() {
 
   return (
     <form onSubmit={onSubmit} className="mt-6 max-w-sm" noValidate>
-      <label htmlFor="footer-newsletter-email" className="block text-eyebrow uppercase text-brand-ink mb-2">
+      <label htmlFor="footer-newsletter-email" className="block text-eyebrow uppercase text-white mb-2">
         Newsletter
       </label>
       <div className="flex gap-2">
@@ -176,7 +175,7 @@ function NewsletterForm() {
           value={email}
           onChange={(e) => { setEmail(e.target.value); if (state === 'error') setState('idle'); }}
           placeholder="you@company.com"
-          className="flex-1 min-w-0 rounded-full border border-brand-line bg-white px-4 py-2.5 text-[0.9rem] text-brand-ink placeholder:text-brand-muted/60 focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/15 transition"
+          className="flex-1 min-w-0 rounded-full border border-[#333333] bg-black px-4 py-2.5 text-[0.9rem] text-white placeholder:text-[#a7a9ac]/60 focus:outline-none focus:border-[#009999] focus:ring-2 focus:ring-[#009999]/15 transition"
         />
         <button
           type="submit"
@@ -197,7 +196,7 @@ function NewsletterForm() {
         <p
           className={[
             'mt-2 text-[0.75rem]',
-            state === 'success' ? 'text-brand-teal' : 'text-red-600',
+            state === 'success' ? 'text-[#009999]' : 'text-red-600',
           ].join(' ')}
           role={state === 'error' ? 'alert' : 'status'}
         >

@@ -14,21 +14,18 @@ function LogoLockup({ iconOnly = false, className = '' }) {
   // iconOnly = use the SO badge alone (mobile nav, small spaces)
   if (iconOnly) {
     return (
-      <img
-        src="/soembark-icon.png"
-        alt="SoEmbark"
-        className={`h-12 w-12 rounded-[10px] object-cover ${className}`}
-      />
+      <div
+        className={`h-12 w-12 rounded-[10px] flex items-center justify-center bg-[#009999] text-white font-bold text-xl ${className}`}
+      >
+        SO
+      </div>
     );
   }
-  // full lockup: use the lockup image
+  // full lockup: text-based logo with specific fonts
   return (
-    <a href="#top" aria-label="SoEmbark home" className={className}>
-      <img
-        src="/soembark-lockup.png"
-        alt="SoEmbark"
-        className="h-16 w-auto object-contain"
-      />
+    <a href="#top" aria-label="SoEmbark home" className={`flex items-baseline gap-0 ${className}`}>
+      <span style={{ fontFamily: '"Brodille", "Playfair Display", serif', fontWeight: 800, fontSize: '1.75rem', color: '#FFFFFF', lineHeight: '1' }}>So</span>
+      <span style={{ fontFamily: '"Bricolage Grotesque", sans-serif', fontWeight: 700, fontSize: '1.75rem', color: '#009999', lineHeight: '1' }}>Embark</span>
     </a>
   );
 }
@@ -70,8 +67,8 @@ export default function Navigation() {
       className={[
         'fixed inset-x-0 top-0 z-50 transition-all duration-300 w-full',
         scrolled
-          ? 'bg-white/90 backdrop-blur-md shadow-nav border-b border-brand-line'
-          : 'bg-white border-b border-transparent',
+          ? 'bg-black/90 backdrop-blur-md shadow-nav border-b border-[#1a1a1a]'
+          : 'bg-black border-b border-transparent',
       ].join(' ')}
     >
       <nav className="container-wide flex items-center justify-between h-[72px] w-full">
@@ -124,7 +121,7 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25, ease: [0.2, 0.8, 0.2, 1] }}
-            className="lg:hidden absolute inset-x-0 top-[72px] bg-white border-b border-brand-line shadow-card"
+            className="lg:hidden absolute inset-x-0 top-[72px] bg-black border-b border-[#1a1a1a] shadow-card"
           >
             <div className="container-wide py-6 flex flex-col gap-1">
               {navLinks.map((link) => (
@@ -132,7 +129,7 @@ export default function Navigation() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="py-3 px-2 text-[1.0625rem] font-medium text-brand-ink hover:text-brand-teal border-b border-brand-lineSoft last:border-0 transition"
+                  className="py-3 px-2 text-[1.0625rem] font-medium text-[#a7a9ac] hover:text-[#009999] border-b border-[#1a1a1a] last:border-0 transition"
                 >
                   {link.name}
                 </a>

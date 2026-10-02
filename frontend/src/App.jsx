@@ -2,11 +2,11 @@ import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import LogoStrip from "./components/LogoStrip";
 import Services from "./components/Services";
-import Features from "./components/Features";
 import Process from "./components/Process";
 import SocialProof from "./components/SocialProof";
-import ContactSection from "./components/ContactSection";
+import CTABanner from "./components/CTABanner";
 import Footer from "./components/Footer";
+import InfluencerMarketing from "./components/InfluencerMarketing";
 
 function App() {
   return (
@@ -17,10 +17,10 @@ function App() {
         <Hero />
         <LogoStrip />
         <Services />
-        <Features />
+        <InfluencerMarketing />
         <Process />
         <SocialProof />
-        <ContactSection />
+        <CTABanner />
       </main>
 
       <Footer />

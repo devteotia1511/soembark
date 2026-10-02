@@ -5,7 +5,7 @@ const ease = [0.2, 0.8, 0.2, 1];
 
 export default function CTABanner() {
   return (
-    <section id="contact" className="bg-brand-teal text-white py-24 md:py-32 relative overflow-hidden">
+    <section id="contact" className="bg-[#009999] text-white py-24 md:py-32 relative overflow-hidden">
       {/* Subtle texture */}
       <div
         aria-hidden="true"
@@ -31,7 +31,7 @@ export default function CTABanner() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, delay: 0.08, ease }}
-          className="mt-5 text-lead text-white/85 max-w-xl mx-auto text-pretty"
+          className="mt-5 text-lead text-white/80 max-w-xl mx-auto text-pretty"
         >
           Tell us about your project. We reply within one working day — usually faster.
         </motion.p>
@@ -49,7 +49,7 @@ export default function CTABanner() {
           </a>
           <a
             href="mailto:hello@soembark.com?subject=Booking%20a%20call"
-            className="btn border-2 border-white/80 text-white hover:bg-white hover:text-brand-teal px-7 py-3.5 rounded-full text-[0.95rem] font-medium transition"
+            className="btn border-2 border-white/80 text-white hover:bg-white hover:text-[#009999] px-7 py-3.5 rounded-full text-[0.95rem] font-medium transition"
           >
             Book a call
           </a>
